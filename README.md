@@ -23,6 +23,7 @@ I prefer LFTP because, not only is it a fully automated daemon, it also maximize
   pkg install nano
   pkg install bash
   pkg install lftp
+  pkg intall wget
 6. Now we need to setup a user and group in the jail so that our files have the permissions we want
   pw groupadd (groupname)
   adduser (username)
