@@ -125,7 +125,7 @@ bash synctorrents.sh
           chmod 700 runsync.sh
     4. Open the script and chage username to your respective username
           nano runsync.sh
-    5. Open the freenas webgui and go to Task>Cron Jobs>Add Cron Job, These are the values you need to configure replace what is in brackets with your relevant information the defaults are fin for the rest. 
+    6. Open the freenas webgui and go to Task>Cron Jobs>Add Cron Job, These are the values you need to configure replace what is in brackets with your relevant information the defaults are fin for the rest. 
         User : root
         Command : jexec (jailname not number as this can change) bash su mediaplayer ~/scripts/syncdownloads.sh
         Description : (Download Files From Feral Seedbox)
