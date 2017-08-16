@@ -115,7 +115,13 @@ bash synctorrents.sh
 ~~~
 
 #### Setup Cron Job In Freenas 
-    1. Open the freenas webgui and go to Task>Cron Jobs>Add Cron Job, These are the values you need to configure replace what is in brackets with your relevant information the defaults are fin for the rest. 
+    1. Now we need to make a script to allow the root user to run the command as (username) in the jail so that our new files have the correct permissions
+    2. Type: exit (to return to root user in the jail)
+    3. Run these commands:
+          mkdir ~/scripts
+          cd ~/scripts
+          wget-qO runsync.sh https://github.com/CJBlake/feralhosting-freenas_lftp/blob/master/runsync.sh
+    4. Open the freenas webgui and go to Task>Cron Jobs>Add Cron Job, These are the values you need to configure replace what is in brackets with your relevant information the defaults are fin for the rest. 
         User : root
         Command : jexec (jailname not number as this can change) bash su mediaplayer ~/scripts/syncdownloads.sh
         Description : (Download Files From Feral Seedbox)
