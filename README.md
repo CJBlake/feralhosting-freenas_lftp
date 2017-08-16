@@ -16,6 +16,7 @@ I prefer LFTP because, not only is it a fully automated daemon, it also maximize
 3. Open an ssh connection to your freenas box as root (eg. ssh root@freenas.local)
 4. Type jls and record jail number 
 5. Type the following: (anything in brackets replace with your specific configuration)
+  ~~~
   jexec (4) tcsh
   pkg clear
   pkg update
@@ -24,9 +25,12 @@ I prefer LFTP because, not only is it a fully automated daemon, it also maximize
   pkg install bash
   pkg install lftp
   pkg intall wget
+  ~~~
 6. Now we need to setup a user and group in the jail so that our files have the permissions we want
+  ~~~
   pw groupadd (groupname)
   adduser (username)
+  ~~~
 7. Once you type in the previous command a set of questions will come up specify the uid that matches the uid of the owner of the share on your freenas box and the group you just created, the default setting are fine for the rest
 
 #### Download and configure the script
