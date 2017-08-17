@@ -140,24 +140,24 @@ bash synctorrents.sh
        so that our new files have the correct permissions
     2. Type: exit (to return to root user in the jail)
     3. Run these commands:
-       ~~~
+          ~~~
           mkdir ~/scripts
           cd ~/scripts
           wget -q https://raw.githubusercontent.com/CJBlake/feralhosting-freenas_lftp/master/runsync.sh
           chmod 700 runsync.sh
-       ~~~
+          ~~~
     4. Open the script and chage username to your respective username
-       ~~~
+          ~~~
           nano runsync.sh
-       ~~~
+          ~~~
     6. Open the freenas webgui and go to Task>Cron Jobs>Add Cron Job, These are the values you need to 
        configure replace what is in   brackets with your relevant information the defaults are fin for the rest. 
-       ~~~
-        User : root
-        Command : jexec (jailname not number as this can change) bash ~/scripts/runsync.sh
-        Description : (Download Files From Feral Seedbox)
-        Minute (every n minute) : 15
-       ~~~
+          ~~~
+          User : root
+          Command : jexec (jailname not number as this can change) bash ~/scripts/runsync.sh
+          Description : (Download Files From Feral Seedbox)
+           Minute (every n minute) : 15
+          ~~~
     
 
 I must give credit to [LordHades](http://www.torrent-invites.com/seedbox-tutorials/132965-tutorial-auto-sync-seedbox-home-linux-mac-machine-lftp-shell-script.html) who created this amazing script.
