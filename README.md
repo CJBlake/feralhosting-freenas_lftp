@@ -88,7 +88,7 @@ Run this to download the script in your jail and confiure it
 su (username) 
 mkdir ~/scripts
 cd ~/scripts
-wget -qO syncdownloads.sh https://github.com/CJBlake/feralhosting-freenas_lftp/blob/master/syncdownloads.sh
+wget -q https://raw.githubusercontent.com/CJBlake/feralhosting-freenas_lftp/master/syncdownloads.sh
 nano syncdownloads.sh
 ~~~
 
@@ -141,7 +141,7 @@ bash synctorrents.sh
     3. Run these commands:
           mkdir ~/scripts
           cd ~/scripts
-          wget -qO runsync.sh https://github.com/CJBlake/feralhosting-freenas_lftp/blob/master/runsync.sh
+          wget -q https://raw.githubusercontent.com/CJBlake/feralhosting-freenas_lftp/master/runsync.sh
           chmod 700 runsync.sh
     4. Open the script and chage username to your respective username
           nano runsync.sh
