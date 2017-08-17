@@ -9,6 +9,22 @@ I prefer LFTP because, not only is it a fully automated daemon, it also maximize
 
 ### Freenas (freebsd) 
 
+#### Automatic Setup ####
+1. Create a new jail using the web gui (see here if unsure https://doc.freenas.org/9.10/jails.html )
+2. Add storage to the jail using the web gui (Jail>Storage>Add Storage)
+3. Open an ssh connection to your freenas box as root (eg. ssh root@freenas.local)
+4. Type jls and record jail number 
+5. Type the following: (anything in brackets replace with your specific configuration)
+  ~~~
+  jexec (4) tcsh
+  pkg install -y bash
+  pkg intall -y wget
+  wget -q /automaticsetup.sh https://raw.githubusercontent.com/CJBlake/feralhosting-freenas_lftp/master/automaticsetup.sh
+  chmod 770 /automaticsetup.sh
+  bash /automaticsetup.sh
+  ~~~
+ 6. Now you can skip to "Setup Cron Job In Freenas "
+
 #### Initial Setup
 
 1. Create a new jail using the web gui (see here if unsure https://doc.freenas.org/9.10/jails.html )
