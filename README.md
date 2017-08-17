@@ -160,7 +160,7 @@ configure replace what is in   brackets with your relevant information the defau
     
 
 I must give credit to [LordHades repo](http://www.torrent-invites.com/seedbox-tutorials/132965-tutorial-auto-sync-seedbox-home-linux-mac-machine-lftp-shell-script.html) who made the basis of this script
-And also the [feralfilehosting](https://github.com/feralhosting/feralfilehosting/blob/master/Feral%20Wiki/SFTP%20and%20FTP/LFTP%20-%20Automated%20sync%20from%20seedbox%20to%20home/readme.md) whose instructions were used to configure this script and intructions for a feral server seedbox, however that should work for any server/seedbox that supports SFTP and LFTP.
+And also the [feralfilehosting repo](https://github.com/feralhosting/feralfilehosting/blob/master/Feral%20Wiki/SFTP%20and%20FTP/LFTP%20-%20Automated%20sync%20from%20seedbox%20to%20home/readme.md) whose instructions were used to configure this script and intructions for a feral server seedbox, however that should work for any server/seedbox that supports SFTP and LFTP.
 
 
 
