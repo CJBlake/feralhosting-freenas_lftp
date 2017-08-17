@@ -157,6 +157,8 @@ configure replace what is in   brackets with your relevant information the defau
   Description : (Download Files From Feral Seedbox)
   Minute (every n minute) : 15
   ~~~
+  
+  ****(Additional Tip: If you use sonarr or a similar program to manage your media make sure you use Remote Path Mappings so that sonarr can correctly immport your files)
     
 
 I must give credit to [LordHades repo](http://www.torrent-invites.com/seedbox-tutorials/132965-tutorial-auto-sync-seedbox-home-linux-mac-machine-lftp-shell-script.html) who made the basis of this script
