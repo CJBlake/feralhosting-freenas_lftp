@@ -25,7 +25,7 @@ I prefer LFTP because, not only is it a fully automated daemon, it also maximize
   ~~~
  6. Now you can skip to "Setup Cron Job In Freenas " step 6
 
-#### Initial Setup
+#### Manual Setup
 
 1. Create a new jail using the web gui (see here if unsure https://doc.freenas.org/9.10/jails.html )
 2. Add storage to the jail using the web gui (Jail>Storage>Add Storage)
