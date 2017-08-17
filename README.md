@@ -159,7 +159,7 @@ configure replace what is in   brackets with your relevant information the defau
   ~~~
     
 
-I must give credit to [LordHades](http://www.torrent-invites.com/seedbox-tutorials/132965-tutorial-auto-sync-seedbox-home-linux-mac-machine-lftp-shell-script.html) who created this amazing script.
+I must give credit to [LordHades](http://www.torrent-invites.com/seedbox-tutorials/132965-tutorial-auto-sync-seedbox-home-linux-mac-machine-lftp-shell-script.html) who made the basis of this script
 
 
 
