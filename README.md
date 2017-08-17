@@ -23,7 +23,7 @@ I prefer LFTP because, not only is it a fully automated daemon, it also maximize
   chmod 770 /automaticsetup.sh
   bash /automaticsetup.sh
   ~~~
- 6. Now you can skip to "Setup Cron Job In Freenas "
+ 6. Now you can skip to "Setup Cron Job In Freenas " step 6
 
 #### Initial Setup
 
