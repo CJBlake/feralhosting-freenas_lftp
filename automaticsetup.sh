@@ -48,7 +48,7 @@ pkg install -y wget
 pw groupadd "$grpname"
 pw useradd -m -s tcsh -u "$uid" -g "$grpname" -n "$uname"
 su "$uname" -c "mkdir ~/scripts"
-
+su "$uname" -c "mkdir ~/temp"
 su "$uname" -c "cat > ~/scripts/syncdownloads.sh << 'ENDMASTER'
 $(
 ###### The parameter substitution is on here
@@ -59,6 +59,7 @@ pass="$fpass"
 host="$fhost"
 remote_dir="$fremote_dir"
 local_dir="$flocal_dir"
+temp_dir="~/temp"
 
 INNERMASTER
 
@@ -80,6 +81,7 @@ else
     quit
 EOF
     rm -f "$lock_file"
+    mv  -v "$temp_dir/*" "$local_dir"
     trap - SIGINT SIGTERM
     exit
 fi
