@@ -79,7 +79,8 @@ else
 EOF
     rm -f "$lock_file"
     trap - SIGINT SIGTERM
-    mv  -v ~/temp/* "$local_dir"    exit
+    mv  -v ~/temp/* "$local_dir"    
+    exit
 fi
 ~~~
 
