@@ -17,12 +17,12 @@ else
     touch "$lock_file"
     lftp -p 22 -u "$login","$pass" sftp://"$host" << EOF
     set sftp:auto-confirm yes
-    set mirror:use-pget-n 5
+    set mirror:use-pget-n 10
     mirror -c -P5 "$remote_dir" "$temp_dir"
     quit
 EOF
     rm -f "$lock_file"
     trap - SIGINT SIGTERM
-    mv  -v "$temp_dir/*" "$local_dir"
+    mv  -v ~/temp/* "$local_dir"
     exit
 fi
