@@ -89,6 +89,7 @@ Run this to download the script in your jail and confiure it
 ~~~
 su (username) 
 mkdir ~/scripts
+mkdir ~/temp
 cd ~/scripts
 wget -q https://raw.githubusercontent.com/CJBlake/feralhosting-freenas_lftp/master/syncdownloads.sh
 nano syncdownloads.sh
