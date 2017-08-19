@@ -60,6 +60,7 @@ pass="password"
 host="server.feralhosting.com"
 remote_dir='~/folder/you/want/to/copy'
 local_dir="/folder/you/mounted/to/jail"
+temp='~/temp'
 
 base_name="$(basename "$0")"
 lock_file="/tmp/$base_name.lock"
@@ -78,6 +79,7 @@ else
 EOF
     rm -f "$lock_file"
     trap - SIGINT SIGTERM
+    mv  -v "$temp_dir/*" "$local_dir"
     exit
 fi
 ~~~
