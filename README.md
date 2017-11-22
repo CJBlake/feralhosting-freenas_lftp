@@ -216,7 +216,7 @@ cp -val "$2" "$synctvshows_path"
 echo "Created a hardlink of $name in LFTP sync folder" >> /media/sdab1/username/logs/hardlinkdownloads.log
 echo "$2" >> /media/sdab1/username/logs/hardlinkdownloads.log
 
-bash "/media/sdab1/username/Scripts/syncdownload.sh"
+bash "/media/sdab1/username/Scripts/requestdownload.sh"
 rm -f "$lock_file"
 trap - SIGINT SIGTERM
 
@@ -248,7 +248,7 @@ Make the script executable and only readable to your seedbox user & group:
 chmod 770 hardlinkdownloads.sh
 ~~~
 
-#### Download and configure the syncdownloads script
+#### Download and configure the requestdownload script
 Here is the script to manually copy and paste:
 ~~~
 #!/bin/bash
@@ -257,14 +257,14 @@ ssh root@AAAAAAAAAA.duckdns.org -p 22 "bash ~/scripts/syncrutorrent.sh"
 Run this to download the script in your seedbox CLI and confiure it 
 ~~~
 cd ~/Scripts
-wget -q https://raw.githubusercontent.com/CJBlake/feralhosting-freenas_lftp/master/syncdownload.sh
-nano syncdownload.sh
+wget -q https://raw.githubusercontent.com/CJBlake/feralhosting-freenas_lftp/master/requestdownload.sh
+nano requestdownload.sh
 ~~~
 In the script where you see "AAAAAAAAAA.duckdns.org" replace this with your dynamic dns hostname or external IP address 
 
 Make the script executable and only readable to your seedbox user:
 ~~~
-chmod 700 hardlinkdownloads.sh
+chmod 700 requestdownload.sh
 ~~~
 
 #### Edit ruTorrent to run the above scripts upon completion
