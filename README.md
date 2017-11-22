@@ -270,26 +270,18 @@ screen -dmS rtorrent rtorrent
 ~~~
 
 #### Setup Cron Job In Freenas 
-1. Now we need to make a script to allow the root user to run the command as (username) in the jail so that our new files have the correct permissions
-2. Type: exit (to return to root user in the jail)
-3. Run these commands:
-  ~~~
-  mkdir ~/scripts
-  cd ~/scripts
-  wget -q https://raw.githubusercontent.com/CJBlake/feralhosting-freenas_lftp/master/runsync.sh
-  chmod 700 runsync.sh
-  ~~~
-4. Open the script and chage username to your respective username
-  ~~~
-  nano runsync.sh
-  ~~~
-6. Open the freenas webgui and go to Task>Cron Jobs>Add Cron Job, These are the values you need to 
+1. Goto duck dns or your prefered dynamic DNS service provider and signin with your google,fb ... account 
+2. Create a subdomain with the same external ip as your freenas box
+3. Make note of the token and domain and modify those values in the below command (AAAAAAAAAAAA) is the example domain and (12345-123124-12312312-21312312-1312AA) is the example token
+4. Open the freenas webgui and go to Task>Cron Jobs>Add Cron Job, These are the values you need to 
 configure replace what is in   brackets with your relevant information the defaults are fin for the rest. 
   ~~~
-  User : root
-  Command : jexec (jailname not number as this can change) bash ~/scripts/runsync.sh
-  Description : (Download Files From Feral Seedbox)
-  Minute (every n minute) : 15
+  User : nobody
+  Command : /usr/local/bin/curl "https://www.duckdns.org/update?domains=AAAAAAAAAAAA&token=12345-123124-12312312-21312312-1312AA&ip="
+  Description : Update Duck DNS
+  Minute (every selected minute) : 1
+  Hour (Run every N hour): 9
+  Day (Run every N day): 1
   ~~~
   
   ****(Additional Tip: If you use sonarr or a similar program to manage your media make sure you use Remote Path Mappings so that sonarr can correctly immport your files)
