@@ -154,8 +154,6 @@ Just tells it to try and resume an interrupted download if it' s the case.
 bash syncdownloads.sh
 ~~~
 
-### Setup ruTorrent to tell Freenas to download once torrent download is completed  
-
 1. Now we need to make a script to allow the root user to run the command as (username) in the jail so that our new files have the correct permissions
 2. Type: exit (to return to root user in the jail)
 3. Run these commands:
@@ -169,7 +167,9 @@ bash syncdownloads.sh
   ~~~
   nano runsync.sh
   ~~~
-  
+
+### Setup ruTorrent to tell Freenas to download once torrent download is completed  
+
 #### Setup Cron Job In Freenas for dynamic dns 
 1. Go to duck dns or your prefered dynamic DNS service provider and signin with your google,fb ... account 
 2. Create a subdomain with the same external ip as your freenas box
