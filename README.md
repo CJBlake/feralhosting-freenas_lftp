@@ -235,6 +235,7 @@ root@domain.duckdns.org's password:
 ~~~
 Enter Your Password
 ~~~
+
 ~~~
 ssh root@domain.duckdns.org 'cat >> .ssh/authorized_keys'
 ~~~
@@ -242,6 +243,7 @@ root@domain.duckdns.org's password:
 ~~~
 Enter Your Password
 ~~~
+
 ~~~
 ssh root@domain.duckdns.org "chmod 700 .ssh; chmod 640 .ssh/authorized_keys"
 ~~~
