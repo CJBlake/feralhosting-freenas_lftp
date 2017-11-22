@@ -54,13 +54,17 @@ I prefer LFTP because, not only is it a fully automated daemon, it also maximize
 Here is the script to manually copy and paste:
 
 ~~~
-#!/bin/bash
+'#!/bin/bash
 login="username"
 pass="password"
 host="server.feralhosting.com"
 remote_dir='~/folder/you/want/to/copy'
 local_dir="/folder/you/mounted/to/jail"
-temp_dir='~/temp'
+temp_dir='/temp'
+upload_rate="0"
+download_rate="0"
+H=$(date +%H)
+
 
 base_name="$(basename "$0")"
 lock_file="/tmp/$base_name.lock"
@@ -71,16 +75,27 @@ then
     exit
 else
     touch "$lock_file"
+    if (( 9 <= 10#$H && 10#$H < 24 )); then
+        upload_rate="125000"
+        download_rate="5000000"
+        echo "limit on"
+    else
+        upload_rate="0"
+        download_rate="0"
+        echo "limit off"
+    fi
     lftp -p 22 -u "$login","$pass" sftp://"$host" << EOF
     set sftp:auto-confirm yes
-    set mirror:use-pget-n 5
-    mirror -c -P5 "$remote_dir" "$temp_dir"
+    set net:limit-rate "$upload_rate":"$download_rate"
+    set mirror:use-pget-n 50
+    mirror -c -v -P3 --loop --Remove-source-dirs "$remote_dir" "$temp_dir"
     quit
 EOF
+    mv  -v /temp/* "$local_dir"
     rm -f "$lock_file"
     trap - SIGINT SIGTERM
-    mv  -v ~/temp/* "$local_dir"    
     exit
+
 fi
 ~~~
 
