@@ -158,15 +158,29 @@ bash synctorrents.sh
 
 ### Setup ruTorrent to tell Freenas to download once torrent download is completed  
 
+1. Now we need to make a script to allow the root user to run the command as (username) in the jail so that our new files have the correct permissions
+2. Type: exit (to return to root user in the jail)
+3. Run these commands:
+  ~~~
+  mkdir ~/scripts
+  cd ~/scripts
+  wget -q https://raw.githubusercontent.com/CJBlake/feralhosting-freenas_lftp/master/runsync.sh
+  chmod 700 runsync.sh
+  ~~~
+4. Open the script and chage username to your respective username
+  ~~~
+  nano runsync.sh
+  ~~~
+
 #### Setup passwordless login from seedbox to freenas jail
 
 1. Now we need to setup your seedbox to have SSH access to your local machine in order to remotely execute this script. 
 2. You must forward your local machine SSH port out your router so your seedbox can access it and login If you have a nonstatic ip then a dynamic dns is a good idea duck dns is free and reliable if you need a provider. Then you must setup passwordless login by saving RSA keys as seen here: https://www.tecmint.com/ssh-passwordless-login-using-ssh-keygen-in-5-easy-steps/ 
-5. Now is a goog time that we can remotely execute the script from your seedbox CLI
+5. Now is a good time to check that we can remotely execute the script from your seedbox CLI
 ~~~
 ssh root@AAAAAAAAAA.duckdns.org -p 22 "bash ~/scripts/syncrutorrent.sh"
 ~~~
-  #### Download and configure the script
+#### Download and configure the hardlinkdownloads script
 Here is the script to manually copy and paste:
 ~~~
 #!/bin/sh
@@ -193,6 +207,52 @@ trap - SIGINT SIGTERM
 
 exit 0
 ~~~
+
+Run this to download the script in your seedbox CLI and confiure it 
+
+~~~
+mkdir ~/Scripts
+mkdir ~/Downloads
+mkdir ~/Downloads/completed
+mkdir ~/logs
+mkdir ~/tmp
+cd ~/Scripts
+wget -q https://raw.githubusercontent.com/CJBlake/feralhosting-freenas_lftp/master/hardlinkdownloads.sh
+nano hardlinkdownloads.sh
+~~~
+
+In the script where ever you see "username" listed in the path change it to match your feral seedbox username e.g.
+
+~~~
+synctvshows_path="/media/sdab1/username/Downloads/completed/"
+~~~
+
+Make the script executable and only readable to your seedbox user & group:
+
+~~~
+chmod 770 hardlinkdownloads.sh
+~~~
+
+#### Download and configure the syncdownloads script
+Here is the script to manually copy and paste:
+~~~
+#!/bin/bash
+ssh root@AAAAAAAAAA.duckdns.org -p 22 "bash ~/scripts/syncrutorrent.sh"
+~~~
+Run this to download the script in your seedbox CLI and confiure it 
+~~~
+cd ~/Scripts
+wget -q https://raw.githubusercontent.com/CJBlake/feralhosting-freenas_lftp/master/syncdownload.sh
+nano syncdownload.sh
+~~~
+In the script where ever you see AAAAAAAAAA.duckdns.org replace this with your dynamic dns hostname or external IP address 
+
+Make the script executable and only readable to your seedbox user & group:
+~~~
+chmod 700 hardlinkdownloads.sh
+~~~
+
+#### Edit ruTorrent to run the above scripts upon completion
 
 
 
