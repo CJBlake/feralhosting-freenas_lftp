@@ -228,14 +228,10 @@ RSA key fingerprint is 45:0e:28:11:d6:81:62:16:04:3f:db:38:02:la:22:4e.
 Are you sure you want to continue connecting (yes/no)? [Enter yes]
 Warning: Permanently added 'domain.duckdns.org' to the list of known hosts.
 root@domain.duckdns.org's password: [Enter Your Password]
-~~~
 
-~~~
 ssh root@domain.duckdns.org 'cat >> .ssh/authorized_keys'
 root@domain.duckdns.org's password: [Enter Your Password]
-~~~
 
-~~~
 ssh root@domain.duckdns.org "chmod 700 .ssh; chmod 640 .ssh/authorized_keys"
 root@domain.duckdns.org's password: [Enter Your Password]
 ~~~
