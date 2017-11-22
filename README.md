@@ -269,8 +269,8 @@ killall -9 -u $(whoami) rtorrent
 screen -dmS rtorrent rtorrent
 ~~~
 
-#### Setup Cron Job In Freenas 
-1. Goto duck dns or your prefered dynamic DNS service provider and signin with your google,fb ... account 
+#### Setup Cron Job In Freenas for dynamic dns 
+1. Go to duck dns or your prefered dynamic DNS service provider and signin with your google,fb ... account 
 2. Create a subdomain with the same external ip as your freenas box
 3. Make note of the token and domain and modify those values in the below command (AAAAAAAAAAAA) is the example domain and (12345-123124-12312312-21312312-1312AA) is the example token
 4. Open the freenas webgui and go to Task>Cron Jobs>Add Cron Job, These are the values you need to 
