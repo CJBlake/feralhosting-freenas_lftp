@@ -257,10 +257,16 @@ Open the .rtorrent.rc config file on your seedbox
 ~~~
 nano ~/.rtorrent.rc
 ~~~
-and add the following lines 
+and add the following lines replacing "username" again with your coresponding seedbox username
 ~~~
 # Hardlink donwloaded files to sync folder and Sync
-system.method.set_key = event.download.finished,hardlink,"execute=/media/sdab1/q9k0b1xqu379/Scripts/hardlinkdownloads.sh,$d.get_name=,$d.get_base_path="
+system.method.set_key = event.download.finished,hardlink,"execute=/media/sdab1/username/Scripts/hardlinkdownloads.sh,$d.get_name=,$d.get_base_path="
+~~~
+
+Now restart ruTorrent:
+~~~
+killall -9 -u $(whoami) rtorrent
+screen -dmS rtorrent rtorrent
 ~~~
 
 #### Setup Cron Job In Freenas 
