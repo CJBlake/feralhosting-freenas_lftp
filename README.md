@@ -223,34 +223,23 @@ Enter same passphrase again: [Press enter key]
 7. while SSH'd to your seedbox SSH into your freenas LFTP jail and complete the following commands
 ~~~
 ssh root@domain.duckdns.org mkdir -p .ssh
-~~~
 The authenticity of host 'domain.duckdns.org (domain.duckdns.org)' can't be established.
 RSA key fingerprint is 45:0e:28:11:d6:81:62:16:04:3f:db:38:02:la:22:4e.
-Are you sure you want to continue connecting (yes/no)? 
-~~~
-yes
-~~~
+Are you sure you want to continue connecting (yes/no)? [Enter yes]
 Warning: Permanently added 'domain.duckdns.org' to the list of known hosts.
-root@domain.duckdns.org's password: 
-~~~
-Enter Your Password
+root@domain.duckdns.org's password: [Enter Your Password]
 ~~~
 
 ~~~
 ssh root@domain.duckdns.org 'cat >> .ssh/authorized_keys'
-~~~
-root@domain.duckdns.org's password: 
-~~~
-Enter Your Password
+root@domain.duckdns.org's password: [Enter Your Password]
 ~~~
 
 ~~~
 ssh root@domain.duckdns.org "chmod 700 .ssh; chmod 640 .ssh/authorized_keys"
+root@domain.duckdns.org's password: [Enter Your Password]
 ~~~
-root@domain.duckdns.org's password: 
-~~~
-Enter Your Password
-~~~
+
 7. You should now be able to log into your freenas LFTP jail from your seedbox via ssh without a password, double check using the following command (you should not be prompted for a password if you were sucessful.)
 ~~~
 ssh root@domain.duckdns.org
