@@ -104,7 +104,7 @@ Run this to download the script in your jail and confiure it
 ~~~
 su (username) 
 mkdir ~/scripts
-mkdir ~/temp
+mkdir /temp
 cd ~/scripts
 wget -q https://raw.githubusercontent.com/CJBlake/feralhosting-freenas_lftp/master/syncdownloads.sh
 nano syncdownloads.sh
@@ -119,6 +119,9 @@ pass="password"
 host="server.feralhosting.com"
 remote_dir='~/folder/you/want/to/copy'
 local_dir="$HOME/lftp/"
+temp_dir='/temp'
+upload_rate="0"
+download_rate="0"
 ~~~
 
 Make the script executable and only readable to your jail user:
@@ -130,17 +133,17 @@ chmod 700 synctorrents.sh
 The important parameters for `lftp` are:
 
 ~~~
-set mirror:use-pget-n 5
+set mirror:use-pget-n 50
 ~~~
 
-This makes lftp try to split up files in 5 pieces for parallel downloading. Likewise,
+This makes lftp try to split up files in 50 pieces for parallel downloading. Likewise,
 
 ~~~
--P5
+-P3
 ~~~
 
  
-Means it will download at most 5 files in parallel (for a total 25 connections). Those 2 combined work wonders. In my case, I always end up downloading the files at the limit of my connection, but feel free to play with them and find what works best for you.
+Means it will download at most 3 files in parallel (for a total 150 connections). Those 2 combined work wonders. In my case, I always end up downloading the files at the limit of my connection, but feel free to play with them and find what works best for you.
 
 ~~~
 -c
