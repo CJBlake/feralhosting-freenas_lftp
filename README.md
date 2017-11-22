@@ -56,7 +56,7 @@ Here is the script to manually copy and paste:
 login="username"
 pass="password"
 host="server.feralhosting.com"
-remote_dir='~/folder/you/want/to/copy'
+remote_dir='~/Downloads/completed'
 local_dir="/folder/you/mounted/to/jail"
 temp_dir='/temp'
 upload_rate="0" 
@@ -115,7 +115,7 @@ In the script these are the variables you will need to customise to meet your re
 login="username"
 pass="password"
 host="server.feralhosting.com"
-remote_dir='~/folder/you/want/to/copy'
+remote_dir='~/Downloads/completed'
 local_dir="$HOME/lftp/"
 temp_dir='/temp'
 upload_rate="0" (in bytes per second)
