@@ -153,7 +153,7 @@ Just tells it to try and resume an interrupted download if it' s the case.
 #### Check that the script is now working 
 
 ~~~
-bash synctorrents.sh
+bash syncdownloads.sh
 ~~~
 
 #### Setup Cron Job In Freenas for dynamic dns 
