@@ -245,7 +245,7 @@ cd ~/Scripts
 wget -q https://raw.githubusercontent.com/CJBlake/feralhosting-freenas_lftp/master/syncdownload.sh
 nano syncdownload.sh
 ~~~
-In the script where ever you see AAAAAAAAAA.duckdns.org replace this with your dynamic dns hostname or external IP address 
+In the script where you see "AAAAAAAAAA.duckdns.org" replace this with your dynamic dns hostname or external IP address 
 
 Make the script executable and only readable to your seedbox user:
 ~~~
