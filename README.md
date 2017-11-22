@@ -161,12 +161,11 @@ bash synctorrents.sh
 #### Setup passwordless login from seedbox to freenas jail
 
 1. Now we need to setup your seedbox to have SSH access to your local machine in order to remotely execute this script. 
-2. 
-You must forward your local machine SSH port out your router so your seedbox can access it and login If you have a nonstatic ip then a dynamic dns is a good idea duck dns is free and reliable if you need a provider. Then you must setup passwordless login by saving RSA keys as seen here: https://www.tecmint.com/ssh-passwordless-login-using-ssh-keygen-in-5-easy-steps/ 
+2. You must forward your local machine SSH port out your router so your seedbox can access it and login If you have a nonstatic ip then a dynamic dns is a good idea duck dns is free and reliable if you need a provider. Then you must setup passwordless login by saving RSA keys as seen here: https://www.tecmint.com/ssh-passwordless-login-using-ssh-keygen-in-5-easy-steps/ 
 5. Now is a goog time that we can remotely execute the script from your seedbox CLI
-  ~~~
-  ssh root@AAAAAAAAAA.duckdns.org -p 22 "bash ~/scripts/syncrutorrent.sh"
-  ~~~
+~~~
+ssh root@AAAAAAAAAA.duckdns.org -p 22 "bash ~/scripts/syncrutorrent.sh"
+~~~
   #### Download and configure the script
 Here is the script to manually copy and paste:
   ~~~
