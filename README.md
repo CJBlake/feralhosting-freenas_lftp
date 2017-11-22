@@ -223,7 +223,7 @@ trap - SIGINT SIGTERM
 exit 0
 ~~~
 
-Run this to download the script in your seedbox CLI and confiure it 
+SSH into your seedbox and run these commands to download and configure the hardlinkdownloads.sh script 
 
 ~~~
 mkdir ~/Scripts
@@ -254,7 +254,7 @@ Here is the script to manually copy and paste:
 #!/bin/bash
 ssh root@AAAAAAAAAA.duckdns.org -p 22 "bash ~/scripts/syncrutorrent.sh"
 ~~~
-Run this to download the script in your seedbox CLI and confiure it 
+Run these commands to download the script to your seedbox. 
 ~~~
 cd ~/Scripts
 wget -q https://raw.githubusercontent.com/CJBlake/feralhosting-freenas_lftp/master/requestdownload.sh
