@@ -156,6 +156,42 @@ Just tells it to try and resume an interrupted download if it' s the case.
 bash synctorrents.sh
 ~~~
 
+#### Setup ruTorrent to tell Freenas to download once torrent download is completed  
+1. Now we need to setup your seedbox to have SSH access to your local machine in order to remotely execute this script. 
+****(You must forward your local machine SSH port out your router so your seedbox can access it and login (If you have a nonstatic ip then a dynamic dns is a good idea duck dns is free and reliable if you need a provider. Then you must setup passwordless login by saving RSA keys as seen here: https://www.tecmint.com/ssh-passwordless-login-using-ssh-keygen-in-5-easy-steps/ )
+2. Now is a goog time that we can remotely execute the script from your seedbox CLI
+  ~~~
+  ssh root@AAAAAAAAAA.duckdns.org -p 22 "bash ~/scripts/syncrutorrent.sh"
+  ~~~
+3. Now lets create a script for ruTorrent to run when it finishes a download to hardlink the download and download it to our freenas jail
+  ~~~
+  #!/bin/sh
+  name=$1
+  base_path=$2
+  synctvshows_path="/media/sdab1/username/Downloads/completed/"
+  base_name="$(basename "$0")"
+  lock_file="/media/sdab1/username/tmp/$base_name.lock"
+  trap "rm -f $lock_file exit 0" SIGINT SIGTERM
+
+  while [ -e "$lock_file" ]
+  do
+      echo "Sync in progress waiting 200 seconds $(date) $line" >> /media/sdab1/username/logs/hardlinkdownloads.log
+      sleep 200
+  done
+  touch "$lock_file"
+  cp -val "$2" "$synctvshows_path"
+  echo "Created a hardlink of $name in LFTP sync folder" >> /media/sdab1/username/logs/hardlinkdownloads.log
+  echo "$2" >> /media/sdab1/username/logs/hardlinkdownloads.log
+
+  bash "/media/sdab1/username/Scripts/syncdownload.sh"
+  rm -f "$lock_file"
+  trap - SIGINT SIGTERM
+
+  exit 0
+  ~~~
+
+
+
 #### Setup Cron Job In Freenas 
 1. Now we need to make a script to allow the root user to run the command as (username) in the jail so that our new files have the correct permissions
 2. Type: exit (to return to root user in the jail)
