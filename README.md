@@ -163,7 +163,7 @@ bash syncdownloads.sh
   wget -q https://raw.githubusercontent.com/CJBlake/feralhosting-freenas_lftp/master/runsync.sh
   chmod 700 runsync.sh
   ~~~
-4. Open the script and chage username to your respective username
+4. Open the script and change "username" to your respective username
   ~~~
   nano runsync.sh
   ~~~
@@ -171,14 +171,15 @@ bash syncdownloads.sh
 ### Setup ruTorrent to tell Freenas to download once torrent download is completed  
 
 #### Setup Cron Job In Freenas for dynamic dns 
+(If you have a nonstatic ip then a dynamic dns is a good idea duck dns is free and reliable if you need a provider.)
 1. Go to duck dns or your prefered dynamic DNS service provider and signin with your google,fb ... account 
 2. Create a subdomain with the same external ip as your freenas box
-3. Make note of the token and domain and modify those values in the below command (AAAAAAAAAAAA) is the example domain and (12345-123124-12312312-21312312-1312AA) is the example token
+3. Make note of the token and domain and modify those values in the below command (domain) is the example domain and (12345-123124-12312312-21312312-1312AA) is the example token
 4. Open the freenas webgui and go to Task>Cron Jobs>Add Cron Job, These are the values you need to 
 configure replace what is in   brackets with your relevant information the defaults are fin for the rest. 
   ~~~
   User : nobody
-  Command : /usr/local/bin/curl "https://www.duckdns.org/update?domains=AAAAAAAAAAAA&token=12345-123124-12312312-21312312-1312AA&ip="
+  Command : /usr/local/bin/curl "https://www.duckdns.org/update?domains=domain&token=12345-123124-12312312-21312312-1312AA&ip="
   Description : Update Duck DNS
   Minute (every selected minute) : 1
   Hour (Run every N hour): 9
@@ -186,11 +187,81 @@ configure replace what is in   brackets with your relevant information the defau
   ~~~
 #### Setup passwordless login from seedbox to freenas jail
 
-1. Now we need to setup your seedbox to have SSH access to your local machine in order to remotely execute this script. 
-2. You must forward your local machine SSH port out your router so your seedbox can access it and login If you have a nonstatic ip then a dynamic dns is a good idea duck dns is free and reliable if you need a provider. Then you must setup passwordless login by saving RSA keys as seen here: https://www.tecmint.com/ssh-passwordless-login-using-ssh-keygen-in-5-easy-steps/ 
+1. Now we need to setup your seedbox to have SSH access to your freenas jail in order to remotely execute this script. 
+2. SSH into your freenas LFTP jail and open the rc.conf to enable SSH
+  ~~~
+  nano /etc/rc.conf
+  ~~~
+  add or change the sshd_enable line to yes
+  ~~~
+  sshd_enable="YES"
+  ~~~
+3. Now we need to allow root login to the jail type the following to open the sshd_config
+  ~~~
+  nano /etc/ssh/sshd_config
+  ~~~
+  change the PermitRootLogin line to YES e.g.
+  ~~~
+  PermitRootLogin YES
+  ~~~
+4. Now you can start the ssh service
+  ~~~
+  service sshd start
+  ~~~
+5. Change the root password in the jail (Follow prompts to change root password.)
+~~~
+passwd
+~~~
+6. Now open another SSH connection to your seedbox (see here for help) and type the following
+~~~
+ssh-keygen -t rsa
+Generating public/private rsa key pair.
+Enter file in which to save the key (/media/sdab1/yourusername/.ssh/id_rsa):[Press enter key]
+Enter passphrase (empty for no passphrase): [Press enter key]
+Enter same passphrase again: [Press enter key]
+~~~
+7. while SSH'd to your seedbox SSH into your freenas LFTP jail and complete the following commands
+~~~
+ssh root@domain.duckdns.org mkdir -p .ssh
+~~~
+The authenticity of host 'domain.duckdns.org (domain.duckdns.org)' can't be established.
+RSA key fingerprint is 45:0e:28:11:d6:81:62:16:04:3f:db:38:02:la:22:4e.
+Are you sure you want to continue connecting (yes/no)? 
+~~~
+yes
+~~~
+Warning: Permanently added 'domain.duckdns.org' to the list of known hosts.
+root@domain.duckdns.org's password: 
+~~~
+Enter Your Password
+~~~
+~~~
+ssh root@domain.duckdns.org 'cat >> .ssh/authorized_keys'
+~~~
+root@domain.duckdns.org's password: 
+~~~
+Enter Your Password
+~~~
+~~~
+ssh root@domain.duckdns.org "chmod 700 .ssh; chmod 640 .ssh/authorized_keys"
+~~~
+root@domain.duckdns.org's password: 
+~~~
+Enter Your Password
+~~~
+7. You should now be able to log into your freenas LFTP jail from your seedbox via ssh without a password, double check using the following command (you should not be prompted for a password if you were sucessful.)
+~~~
+ssh root@domain.duckdns.org
+~~~
+
+
+
+
+
+2. You must forward your local machine SSH port out your router so your seedbox can access it and login. Then you must setup passwordless login by saving RSA keys as seen here: https://www.tecmint.com/ssh-passwordless-login-using-ssh-keygen-in-5-easy-steps/ 
 5. Now is a good time to check that we can remotely execute the script from your seedbox CLI
 ~~~
-ssh root@AAAAAAAAAA.duckdns.org -p 22 "bash ~/scripts/syncrutorrent.sh"
+ssh root@domain.duckdns.org -p 22 "bash ~/scripts/syncrutorrent.sh"
 ~~~
 
 #### Download and configure the hardlinkdownloads script
@@ -250,7 +321,7 @@ chmod 770 hardlinkdownloads.sh
 Here is the script to manually copy and paste:
 ~~~
 #!/bin/bash
-ssh root@AAAAAAAAAA.duckdns.org -p 22 "bash ~/scripts/syncrutorrent.sh"
+ssh root@domain.duckdns.org -p 22 "bash ~/scripts/syncrutorrent.sh"
 ~~~
 Run these commands to download the script to your seedbox. 
 ~~~
@@ -258,7 +329,7 @@ cd ~/Scripts
 wget -q https://raw.githubusercontent.com/CJBlake/feralhosting-freenas_lftp/master/requestdownload.sh
 nano requestdownload.sh
 ~~~
-In the script where you see "AAAAAAAAAA.duckdns.org" replace this with your dynamic dns hostname or external IP address 
+In the script where you see "domain.duckdns.org" replace this with your dynamic dns hostname or external IP address 
 
 Make the script executable and only readable to your seedbox user:
 ~~~
