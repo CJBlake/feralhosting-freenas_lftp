@@ -1,11 +1,9 @@
 # feralhosting-freenas_lftp
 Guide to Sync Feral Server Directory with Freenas Jail with Open-vpn with lftp (sftp)
 
-### Automated LFTP Sync from SeedBox to Home
+### Automated LFTP Sync from SeedBox to Home 
 
-This tutorial will explain how to use an automated LFTP script that runs every few minutes (or of your choosing) matching a remote directory with your home.  This script only works one way, so if you remove the file on your server, it will not be removed from your home directory.  It will also work with Windows, Mac, and Linux.
-
-I prefer LFTP because, not only is it a fully automated daemon, it also maximizes my home pipeline. LFTP supports parallel downloads of the same file while also downloading others as well. Only one instance of this script will run, if it is currently transferring, it creates a lock and will not run again until the current operation has completed.
+This tutorial will explain how to use an automated LFTP script that runs when a download is completed by ruTorrent on your seedbox.  This script will only delete a hardlink of your complteted download once completed, it is recomended that you configure ruTorrent to delete completed downloads after a certain ratio or amount of time elapsed. There are also options within the Script to limit the download speed during 9am to 12am (or times of your choosing) to a certain speed and another speed during all other times (unlimted by default). At this point in time this script is only compatible with ruTorrent as the torrenting client. 
 
 ### Freenas (freebsd) 
 
@@ -23,7 +21,7 @@ I prefer LFTP because, not only is it a fully automated daemon, it also maximize
   chmod 770 /automaticsetup.sh
   bash /automaticsetup.sh
   ~~~
- 6. Now you can skip to "Setup Cron Job In Freenas " step 6
+ 6. Now you can skip to "Setup ruTorrent to tell Freenas to download once torrent download is completed"
 
 #### Manual Setup
 
