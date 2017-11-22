@@ -247,14 +247,21 @@ nano syncdownload.sh
 ~~~
 In the script where ever you see AAAAAAAAAA.duckdns.org replace this with your dynamic dns hostname or external IP address 
 
-Make the script executable and only readable to your seedbox user & group:
+Make the script executable and only readable to your seedbox user:
 ~~~
 chmod 700 hardlinkdownloads.sh
 ~~~
 
 #### Edit ruTorrent to run the above scripts upon completion
-
-
+Open the .rtorrent.rc config file on your seedbox
+~~~
+nano ~/.rtorrent.rc
+~~~
+and add the following lines 
+~~~
+# Hardlink donwloaded files to sync folder and Sync
+system.method.set_key = event.download.finished,hardlink,"execute=/media/sdab1/q9k0b1xqu379/Scripts/hardlinkdownloads.sh,$d.get_name=,$d.get_base_path="
+~~~
 
 #### Setup Cron Job In Freenas 
 1. Now we need to make a script to allow the root user to run the command as (username) in the jail so that our new files have the correct permissions
