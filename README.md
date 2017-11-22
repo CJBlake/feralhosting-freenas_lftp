@@ -59,7 +59,7 @@ host="server.feralhosting.com"
 remote_dir='~/folder/you/want/to/copy'
 local_dir="/folder/you/mounted/to/jail"
 temp_dir='/temp'
-upload_rate="0"
+upload_rate="0" 
 download_rate="0"
 H=$(date +%H)
 
@@ -118,8 +118,8 @@ host="server.feralhosting.com"
 remote_dir='~/folder/you/want/to/copy'
 local_dir="$HOME/lftp/"
 temp_dir='/temp'
-upload_rate="0"
-download_rate="0"
+upload_rate="0" (in bytes per second)
+download_rate="0" (in bytes per second)
 ~~~
 
 Make the script executable and only readable to your jail user:
