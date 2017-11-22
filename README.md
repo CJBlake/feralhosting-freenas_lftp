@@ -194,10 +194,7 @@ configure replace what is in   brackets with your relevant information the defau
 ~~~
 ssh root@AAAAAAAAAA.duckdns.org -p 22 "bash ~/scripts/syncrutorrent.sh"
 ~~~
-#### Automatic Setup ####
-1. 
 
-#### Manual Setup ####
 #### Download and configure the hardlinkdownloads script
 Here is the script to manually copy and paste:
 ~~~
