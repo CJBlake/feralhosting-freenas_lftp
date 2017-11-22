@@ -256,16 +256,6 @@ Enter Your Password
 ssh root@domain.duckdns.org
 ~~~
 
-
-
-
-
-2. You must forward your local machine SSH port out your router so your seedbox can access it and login. Then you must setup passwordless login by saving RSA keys as seen here: https://www.tecmint.com/ssh-passwordless-login-using-ssh-keygen-in-5-easy-steps/ 
-5. Now is a good time to check that we can remotely execute the script from your seedbox CLI
-~~~
-ssh root@domain.duckdns.org -p 22 "bash ~/scripts/syncrutorrent.sh"
-~~~
-
 #### Download and configure the hardlinkdownloads script
 Here is the script to manually copy and paste:
 ~~~
