@@ -186,7 +186,6 @@ configure replace what is in   brackets with your relevant information the defau
   Hour (Run every N hour): 9
   Day (Run every N day): 1
   ~~~
-
 #### Setup passwordless login from seedbox to freenas jail
 
 1. Now we need to setup your seedbox to have SSH access to your local machine in order to remotely execute this script. 
@@ -195,6 +194,10 @@ configure replace what is in   brackets with your relevant information the defau
 ~~~
 ssh root@AAAAAAAAAA.duckdns.org -p 22 "bash ~/scripts/syncrutorrent.sh"
 ~~~
+#### Automatic Setup ####
+1. 
+
+#### Manual Setup ####
 #### Download and configure the hardlinkdownloads script
 Here is the script to manually copy and paste:
 ~~~
