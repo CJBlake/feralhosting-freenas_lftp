@@ -17,7 +17,7 @@ temp_tv_dir="${TEMP_TV_DIR}"
 log_dir="${LFTP_LOG_DIR}"
 
 groupadd -g "$gid" "$grpname"
-useradd -u "$uid" -g "$grpname" "$uname"
+useradd -u "$uid" -g "$grpname" -d /config/$uname "$uname"
 echo "${LFTP_USER}":"${USER_PASSWORD}" | chpasswd
 su "$uname" -c "mkdir /config/scripts"
 su "$uname" -c "cat > /config/scripts/sync_movie_downloads.sh << 'ENDMASTER'
