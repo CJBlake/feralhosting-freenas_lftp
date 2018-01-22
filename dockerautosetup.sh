@@ -18,7 +18,7 @@ log_dir="${LFTP_LOG_DIR}"
 
 groupadd -g "$gid" "$grpname"
 useradd -u "$uid" -g "$grpname" "$uname"
-echo 'mediaplayer:"${USER_PASSWORD}"' |chpasswd
+echo 'mediaplayer:${USER_PASSWORD}' |chpasswd
 su "$uname" -c "mkdir /config/scripts"
 su "$uname" -c "cat > /config/scripts/sync_movie_downloads.sh << 'ENDMASTER'
 $(
@@ -33,10 +33,10 @@ local_dir="$local_movie_dir"
 temp_dir="$temp_movie_dir"
 upload_rate="0"
 download_rate="0"
-H=$(date +%H)
 INNERMASTER
 ###### No parameter substitution
 cat <<'INNERMASTER'
+H=$(date +%H)
 base_name="$(basename "$0")"
 lock_file="/tmp/$base_name.lock"
 trap "rm -f $lock_file; exit 0" SIGINT SIGTERM
