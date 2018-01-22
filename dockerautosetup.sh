@@ -62,8 +62,8 @@ else
     mirror -c -v -P2 --loop --Remove-source-dirs "$remote_dir" "$temp_dir"
     quit
 EOF
-    cp -val "$temp_dir""/*" "$local_dir"
-    rm -rf "$temp_dir""/*"
+    cp -val "$temp_dir"/* "$local_dir"
+    rm -rf "$temp_dir"/*
     chmod -R 775 "$local_dir"
     rm -f "$lock_file"
     trap - SIGINT SIGTERM
@@ -115,8 +115,8 @@ else
     mirror -c -v -P2 --loop --Remove-source-dirs "$remote_dir" "$temp_dir"
     quit
 EOF
-    cp -val "$temp_dir""/*" "$local_dir"
-    rm -rf "$temp_dir""/*"
+    cp -val "$temp_dir"/* "$local_dir"
+    rm -rf "$temp_dir"/*
     chmod -R 775 "$local_dir"
     rm -f "$lock_file"
     trap - SIGINT SIGTERM
