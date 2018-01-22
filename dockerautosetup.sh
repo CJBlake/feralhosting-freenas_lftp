@@ -86,10 +86,10 @@ local_dir="$local_tv_dir"
 temp_dir="$temp_tv_dir"
 upload_rate="0"
 download_rate="0"
-H=$(date +%H)
 INNERMASTER
 ###### No parameter substitution
 cat <<'INNERMASTER'
+H=$(date +%H)
 base_name="$(basename "$0")"
 lock_file="/tmp/$base_name.lock"
 trap "rm -f $lock_file; exit 0" SIGINT SIGTERM
