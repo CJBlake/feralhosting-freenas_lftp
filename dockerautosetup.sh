@@ -16,9 +16,9 @@ temp_movie_dir="${TEMP_MOVIE_DIR}"
 temp_tv_dir="${TEMP_TV_DIR}"
 log_dir="${LFTP_LOG_DIR}"
 
-echo 'root:"${ROOT_PASSWORD}"' |chpasswd	
 groupadd -g "$gid" "$grpname"
 useradd -u "$uid" -g "$grpname" "$uname"
+echo 'mediaplayer:"${ROOT_PASSWORD}"' |chpasswd
 su "$uname" -c "mkdir /config/scripts"
 su "$uname" -c "cat > /config/scripts/sync_movie_downloads.sh << 'ENDMASTER'
 $(
