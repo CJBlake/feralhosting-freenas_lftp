@@ -15,9 +15,10 @@ local_tv_dir="${LOCAL_TV_DIR}"
 temp_movie_dir="${TEMP_MOVIE_DIR}"
 temp_tv_dir="${TEMP_TV_DIR}"
 log_dir="${LFTP_LOG_DIR}"
-	
+
+echo 'root:"${ROOT_PASSWORD}"' |chpasswd	
 groupadd -g "$gid" "$grpname"
-useradd -s bash -u "$uid" -g "$grpname" "$uname"
+useradd -u "$uid" -g "$grpname" "$uname"
 su "$uname" -c "mkdir /config/scripts"
 su "$uname" -c "cat > /config/scripts/sync_movie_downloads.sh << 'ENDMASTER'
 $(
@@ -126,6 +127,7 @@ INNERMASTER
 ENDMASTER"
 su "$uname" -c "chmod 770 /config/scripts/sync_tv_downloads.sh" # Make the script executable
 
+touch "$log_dir/setup.log"
 echo "time: $(date). - setup successful" >> "$log_dir/setup.log"
 
 exit 0
