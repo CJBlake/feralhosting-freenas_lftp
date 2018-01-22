@@ -18,7 +18,7 @@ log_dir="${LFTP_LOG_DIR}"
 
 groupadd -g "$gid" "$grpname"
 useradd -u "$uid" -g "$grpname" "$uname"
-echo 'mediaplayer:${USER_PASSWORD}' |chpasswd
+echo "${LFTP_USER}":"${USER_PASSWORD}" | chpasswd
 su "$uname" -c "mkdir /config/scripts"
 su "$uname" -c "cat > /config/scripts/sync_movie_downloads.sh << 'ENDMASTER'
 $(
